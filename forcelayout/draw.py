@@ -6,7 +6,6 @@ import numpy as np
 
 ColorMap = plt.cm
 
-
 class DrawLayout:
     def __init__(self, dataset: np.ndarray, spring_layout: BaseSpringLayout):
         self.dataset: np.ndarray = dataset

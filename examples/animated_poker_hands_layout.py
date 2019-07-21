@@ -1,4 +1,4 @@
-from poker_utils import load_poker, poker_distance, annotate_poker
+from .poker_utils import load_poker, poker_distance, annotate_poker
 import matplotlib.pyplot as plt
 import forcelayout as fl
 import sys
@@ -14,11 +14,11 @@ if len(sys.argv) < 2:
     print(f'\nusage: python3 animated_poker_hands_layout.py <dataset size> <algorithm>')
     print('\tSizes: see datasets/poker')
     print('\tAvailable algorithms: brute, chalmers96, hybrid, pivot')
-    exit(1)
+    # exit(1)
 
 if len(sys.argv) > 2 and sys.argv[2] not in algorithms:
     print('\tAvailable algorithms: brute, chalmers96, hybrid, pivot')
-    exit(1)
+    # exit(1)
 
 data_set_size = int(sys.argv[1])
 poker_hands = load_poker(data_set_size)

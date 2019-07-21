@@ -16,6 +16,8 @@ class Pivot(Hybrid):
     buckets. Finally, '96 neighbour sampling is performed to clean up the layout.
     """
 
+    # 类pivot下的第一个方法：创建一个实例，给出初始值的method，用__init__()
+    # Many classes like to create objects with instances customized to a specific initial state
     def __init__(self, dataset: np.ndarray = None, nodes: List[Node] = None,
                  distance_fn: Callable[[np.ndarray, np.ndarray], float] = euclidean,
                  sample_layout_iterations: int = 75, remainder_layout_iterations: int = 5,
