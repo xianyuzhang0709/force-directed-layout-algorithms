@@ -1,5 +1,5 @@
 import sys
-import mainwindow
+import newmainwindow
 
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
@@ -8,7 +8,7 @@ if __name__ == '__main__':
     #Dialog = QDialog()
     Window = QMainWindow()
 
-    ui = mainwindow.Ui_MainWindow()
+    ui = newmainwindow.Ui_MainWindow()
     ui.setupUi(Window)
 
     Window.show()
