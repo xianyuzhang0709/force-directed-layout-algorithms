@@ -4,7 +4,7 @@ from ..distance import euclidean
 from itertools import combinations
 from typing import Callable, Tuple, List, Dict, FrozenSet
 from abc import ABC, abstractmethod
-import numpy as np
+import numpy as np #numpy.ndarray = N dementional same structure array
 import math
 
 
@@ -12,12 +12,18 @@ class BaseSpringLayout(ABC):
     """
     Base class for a spring layout algorithm
     """
-    def __init__(self, dataset: np.ndarray = None, nodes: List[Node] = None,
-                 distance_fn: Callable[[np.ndarray, np.ndarray], float] = euclidean,
-                 iterations: int = 50, target_node_speed: float = 0.0,
-                 enable_cache: bool = True) -> None:
+    # name: type = defult values
+    # BaseSpringLayout init values: dataset, nodes, distance_fn,
+    def __init__(self,
+                dataset: np.ndarray = None,
+                nodes: List[Node] = None,
+                distance_fn: Callable[[np.ndarray, np.ndarray], float] = euclidean, # callable reture True or False, True = possible to be called, False = impossible
+                iterations: int = 50,
+                target_node_speed: float = 0.0,
+                enable_cache: bool = True) -> None:
         assert iterations >= 0, "iterations must be non-negative"
         assert dataset is not None or nodes is not None, "must provide either dataset or nodes"
+        # assert condition 用来让程序测试这个condition，如果condition为false，那么raise一个AssertionError出来。
 
         self.nodes: List[Node] = nodes if nodes is not None else self._build_nodes(dataset)
         self.iterations: int = iterations
@@ -26,9 +32,9 @@ class BaseSpringLayout(ABC):
         self.distance_fn: Callable[[np.ndarray, np.ndarray], float] = distance_fn
         self._average_speeds: List[float] = list()
         self.target_node_speed: float = target_node_speed
-        self.enable_cache: bool = enable_cache
+        self.enable_cache: bool = enable_cache #?
         if enable_cache:
-            self.distances: Dict[FrozenSet[Node], float] = dict()
+            self.distances: Dict[FrozenSet[Node], float] = dict() #?Dict, key and value
         else:
             # Change the distance function
             self.distance = self.distance_no_cache
@@ -37,7 +43,7 @@ class BaseSpringLayout(ABC):
         return self._i
 
     def get_positions(self) -> np.ndarray:
-        return np.array([(n.x, n.y) for n in self.nodes])
+        return np.array([(n.x, n.y) for n in self.nodes]) #get every node's x and y positions
 
     def set_positions(self, positions: np.ndarray) -> None:
         for pos, node in zip(positions, self.nodes):
@@ -46,7 +52,7 @@ class BaseSpringLayout(ABC):
     def get_stress(self) -> float:
         distance_diff: float = 0.0
         actual_distance: float = 0.0
-        for source, target in combinations(self.nodes, 2):
+        for source, target in combinations(self.nodes, 2):  #combinations('ABCD', 2)   --->   AB AC AD BC BD CD
             high_d_distance = self.distance(source, target, cache=False)
             low_d_distance = math.sqrt((target.x - source.x)**2 + (target.y - source.y)**2)
             distance_diff += (high_d_distance - low_d_distance)**2
@@ -110,6 +116,7 @@ class BaseSpringLayout(ABC):
 
     def _calculate_velocity(self, source: Node, target: Node, alpha: float=1,
                             cache_distance: bool = False) -> Tuple[float, float]:
+        # velocity is sudu sulv
         """
         Calculate the spring force to apply between two nodes i and j
         """

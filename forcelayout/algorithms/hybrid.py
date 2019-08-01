@@ -9,12 +9,13 @@ import numpy as np
 import math
 
 
-class HybridStage(Enum):
+class HybridStage(Enum): #Enum 枚举是一组绑定到唯一常量值的符号名称（成员）。在枚举中，可以通过标识来比较成员，并且可以迭代枚举本身。
     LAYOUT_SAMPLE = 0
     LAYOUT_REMAINDER = 1
     REFINE_LAYOUT = 2
     FINISHED = 3
-
+# An enumeration is a set of symbolic names (members) bound to unique,
+# constant values. Within an enumeration, the members can be compared by identity, and the enumeration itself can be iterated over.
 
 class Hybrid(BaseSpringLayout):
     """
@@ -24,11 +25,16 @@ class Hybrid(BaseSpringLayout):
     performed to clean up the layout.
     """
 
-    def __init__(self, dataset: np.ndarray = None, nodes: List[Node] = None,
+    def __init__(self,
+                 dataset: np.ndarray = None,
+                 nodes: List[Node] = None,
                  distance_fn: Callable[[np.ndarray, np.ndarray], float] = euclidean,
-                 sample_layout_iterations: int = 75, remainder_layout_iterations: int = 5,
-                 refine_layout_iterations: int = 5, random_sample_size: int = 15,
-                 preset_sample: List[int] = None, target_node_speed: float=0.0,
+                 sample_layout_iterations: int = 75,
+                 remainder_layout_iterations: int = 5,
+                 refine_layout_iterations: int = 5,
+                 random_sample_size: int = 15,
+                 preset_sample: List[int] = None,
+                 target_node_speed: float=0.0,
                  enable_cache: bool = True) -> None:
         iterations = sample_layout_iterations + refine_layout_iterations + 1
         super().__init__(dataset=dataset, nodes=nodes, distance_fn=distance_fn,

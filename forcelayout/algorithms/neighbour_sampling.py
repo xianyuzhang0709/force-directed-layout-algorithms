@@ -11,10 +11,15 @@ class NeighbourSampling(BaseSpringLayout):
     An implementation of Chalmers' 1996 Neighbour and Sampling algorithm.
     Using random sampling to find the closest neighbours from the data set.
     """
-    def __init__(self, dataset: np.ndarray=None, nodes: List[Node]=None,
+    def __init__(self,
+                 dataset: np.ndarray=None,
+                 nodes: List[Node]=None,
                  distance_fn: Callable[[np.ndarray, np.ndarray], float]=euclidean,
-                 iterations: int=50, neighbour_set_size: int=5, sample_set_size: int=10,
-                 target_node_speed: float=0.0, enable_cache: bool=True):
+                 iterations: int=50,
+                 neighbour_set_size: int=5,
+                 sample_set_size: int=10,
+                 target_node_speed: float=0.0,
+                 enable_cache: bool=True):
         super().__init__(dataset=dataset, nodes=nodes, distance_fn=distance_fn,
                          iterations=iterations, target_node_speed=target_node_speed,
                          enable_cache=enable_cache)

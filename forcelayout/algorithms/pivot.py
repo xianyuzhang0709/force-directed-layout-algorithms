@@ -18,12 +18,17 @@ class Pivot(Hybrid):
 
     # 类pivot下的第一个方法：创建一个实例，给出初始值的method，用__init__()
     # Many classes like to create objects with instances customized to a specific initial state
-    def __init__(self, dataset: np.ndarray = None, nodes: List[Node] = None,
+    def __init__(self, dataset: np.ndarray = None,
+                 nodes: List[Node] = None,
                  distance_fn: Callable[[np.ndarray, np.ndarray], float] = euclidean,
-                 sample_layout_iterations: int = 75, remainder_layout_iterations: int = 5,
-                 refine_layout_iterations: int = 5, random_sample_size: int = 15,
-                 preset_sample: List[int] = None, pivot_set_size: int = 10,
-                 target_node_speed: float=0.0, enable_cache: bool=True) -> None:
+                 sample_layout_iterations: int = 75,
+                 remainder_layout_iterations: int = 5,
+                 refine_layout_iterations: int = 5,
+                 random_sample_size: int = 15,
+                 preset_sample: List[int] = None,
+                 pivot_set_size: int = 10,
+                 target_node_speed: float=0.0,
+                 enable_cache: bool=True) -> None:
         super().__init__(dataset=dataset, nodes=nodes, distance_fn=distance_fn,
                          sample_layout_iterations=sample_layout_iterations,
                          remainder_layout_iterations=remainder_layout_iterations,

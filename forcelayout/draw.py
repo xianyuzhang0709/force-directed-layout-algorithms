@@ -134,8 +134,8 @@ class DrawLayout:
         fig.canvas.mpl_connect('motion_notify_event', hover)
 
     def _enable_highlights(self, scatter) -> None:
-        fig = plt.gcf()
-        ax = plt.gca()
+        fig = plt.gcf() #Get the current figure.
+        ax = plt.gca() #Get the current Axes instance on the current figure matching the given keyword args, or create one.
 
         self._highlighted: Dict[int, np.ndarray] = dict()
 
