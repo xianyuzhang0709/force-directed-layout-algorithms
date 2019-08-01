@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'newmainwindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import matplotlib
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+
+from examples.poker_utils import load_poker, annotate_poker, poker_distance
+import matplotlib.pyplot as plt
+import forcelayout as fl
+
+
 
 
 class Ui_MainWindow(object):
@@ -73,7 +71,15 @@ class Figure_Canvas(FigureCanvas):
 
         self.axes = fig.add_subplot(111)  # 调用figure下面的add_subplot方法，类似于matplotlib.pyplot下面的subplot方法
 
+
+
     def test(self):
         x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         y = [23, 21, 32, 13, 3, 132, 13, 3, 1]
         self.axes.plot(x, y)
+
+        dataset = load_poker(500)
+        fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
+        plt.show()
+
+

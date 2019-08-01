@@ -3,7 +3,7 @@ import os
 
 
 def load_file(name, dtype):
-    with open(f'../datasets/{name}', encoding='utf8') as data_file:
+    with open(f'./datasets/{name}', encoding='utf8') as data_file:
         return np.loadtxt(
             data_file,
             skiprows=1,
