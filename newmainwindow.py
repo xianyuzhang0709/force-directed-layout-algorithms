@@ -4,12 +4,12 @@ import matplotlib
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+import numpy as np
+import matplotlib.animation as animation
 
 from examples.poker_utils import load_poker, annotate_poker, poker_distance
 import matplotlib.pyplot as plt
 import forcelayout as fl
-
-
 
 
 class Ui_MainWindow(object):
@@ -81,5 +81,8 @@ class Figure_Canvas(FigureCanvas):
         dataset = load_poker(500)
         fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
         plt.show()
+
+        # self.ani = fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
+
 
 
