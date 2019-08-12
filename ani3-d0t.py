@@ -46,7 +46,7 @@ class MyMplCanvas(FigureCanvas):
         self.ax.set_yticklabels(y)
         self.ax.grid(True)
 
-         # self.compute_initial_figure()
+        self.compute_initial_figure()
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
         FigureCanvas.setSizePolicy(self,
@@ -54,8 +54,8 @@ class MyMplCanvas(FigureCanvas):
                                    QtWidgets.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
 
-    # def compute_initial_figure(self):
-    #     pass
+    def compute_initial_figure(self):
+        pass
 
 
 class ApplicationWindow(QtWidgets.QMainWindow):
@@ -107,11 +107,11 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
 
     def on_start(self):
-        # self.ani = FuncAnimation(self.canvas.figure, self.update_line,
-        #                          blit=True, interval=250)
-        dataset = load_poker(500)
-        self.ani = fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
-        sys.settrace()
+        self.ani = FuncAnimation(self.canvas.figure, self.update_line,
+                                 blit=True, interval=250)
+        # dataset = load_poker(500)
+        # self.ani = fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
+        # sys.settrace()
 
 
     def on_stop(self):
