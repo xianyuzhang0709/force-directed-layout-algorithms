@@ -21,14 +21,23 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.label_placeholder.hide()  # 使用 qt 设计师将布局做好，隐藏占位的标签元素
 
         # 新建我们的绘图组件
-        self.canvas = PlotCanvas(parent=self.PivotGraphic)
+        self.canvas_neighbourSampling = PlotCanvas(parent=self.ChalmerGraphic)
+        self.canvas_hybird = PlotCanvas(parent=self.HybirdGraphic)
+        self.canvas_pivot = PlotCanvas(parent=self.PivotGraphic)
 
         self.closeBtn.clicked.connect(self.close)
+        self.ChalmerBtn.clicked.connect(self.neighbourSampling_layout)
+        self.HybirdBtn.clicked.connect(self.hybird_layout)
         self.PivotBtn.clicked.connect(self.pivot_plot)
 
-    def pivot_plot(self):
-        self.canvas.pivot_layout()
+    def neighbourSampling_layout(self):
+        self.canvas_neighbourSampling.neighbourSampling_layout()
 
+    def hybird_layout(self):
+        self.canvas_hybird.hybird_layout()
+
+    def pivot_plot(self):
+        self.canvas_pivot.pivot_layout()
 
 class PlotCanvas(FigureCanvas):
 
@@ -45,11 +54,22 @@ class PlotCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
         self.draw()
 
+    def neighbourSampling_layout(self):
+        self.fig.clear()
+        dataset = load_poker(500)
+        fl.draw_spring_layout_animated(dataset, algorithm=fl.NeighbourSampling, distance=poker_distance)
+        self.draw()
+
+    def hybird_layout(self):
+        self.fig.clear()
+        dataset = load_poker(500)
+        fl.draw_spring_layout_animated(dataset, algorithm=fl.Hybrid, distance=poker_distance)
+        self.draw()
+
     def pivot_layout(self):
         self.fig.clear()
         dataset = load_poker(500)
         fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
-        # 没有这个，画布上不会画这个，图会在plt弹窗里显示
         self.draw()
 
     def clear(self):
