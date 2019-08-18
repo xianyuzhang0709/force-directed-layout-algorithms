@@ -1,15 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from gui_main import PlotCanvas
 import matplotlib
 
-matplotlib.use("Qt5Agg") 
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-from matplotlib.animation import FuncAnimation
-
-from examples.poker_utils import load_poker, annotate_poker, poker_distance
-import matplotlib.pyplot as plt
-import forcelayout as fl
-
+matplotlib.use("Qt5Agg")
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -52,34 +45,17 @@ class Ui_MainWindow(object):
         self.testBtn.setText(_translate("MainWindow", "Test1"))
 
     def plot(self):
-        draw = Figure_Canvas()
 
-        draw.test()  # 画图
+        self.draw = PlotCanvas()
+
         graphicscene = QtWidgets.QGraphicsScene()
 
-        graphicscene.addWidget(draw)
+        graphicscene.addWidget(self.draw)
 
         self.graphicsView.setScene(graphicscene)
-        self.graphicsView.show()
+        # self.graphicsView.show()
 
-class Figure_Canvas(FigureCanvas, FuncAnimation):
+        self.draw.plot()
 
-    def __init__(self):
-        # self.setParent(parent)
-        self.fig = Figure(figsize=(7, 5), dpi=100)
-        FigureCanvas.__init__(self, self.fig)
-        dataset = load_poker(500)
-        FuncAnimation.__init__ = fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
-        # self.draw()
-
-    def test(self):
-
-        self.draw()
-        print("111")
-
-        plt.show() #问题就是非要有这一步才可以显示动画，但是我需要把这个嵌入到mainwindow里去。
-
-        # self.canvas.draw()
-        print(type(self))
 
 
