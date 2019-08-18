@@ -22,7 +22,7 @@
         <rect>
          <x>0</x>
          <y>10</y>
-         <width>113</width>
+         <width>101</width>
          <height>32</height>
         </rect>
        </property>
@@ -39,12 +39,12 @@
         <rect>
          <x>0</x>
          <y>10</y>
-         <width>83</width>
-         <height>32</height>
+         <width>101</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>1996</string>
+        <string>Chalmer</string>
        </property>
       </widget>
      </widget>

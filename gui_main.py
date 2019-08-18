@@ -79,7 +79,6 @@ class PlotCanvas(FigureCanvas):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    # center = QtWidgets.QDesktopWidget().availableGeometry().center()
     window = MainApp()
     window.show()
     sys.exit(app.exec_())
