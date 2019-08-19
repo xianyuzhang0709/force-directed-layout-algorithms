@@ -66,10 +66,19 @@ class PlotCanvas(FigureCanvas):
         fl.draw_spring_layout_animated(dataset, algorithm=fl.Hybrid, distance=poker_distance)
         self.draw()
 
+    # def pivot_layout(self):
+    #     self.fig.clear()
+    #     dataset = load_poker(500)
+    #     fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
+    #     self.draw()
+
     def pivot_layout(self):
         self.fig.clear()
         dataset = load_poker(500)
-        fl.draw_spring_layout_animated(dataset, algorithm=fl.Pivot, distance=poker_distance)
+        layout = fl.draw_spring_layout(dataset, algorithm=fl.Pivot, distance=poker_distance,
+                                       color_by=lambda datapoint: datapoint[10])
+        draw = fl.DrawLayout(dataset, layout)
+        draw.draw(color_by=lambda datapoint: datapoint[10], color_map='hsv')
         self.draw()
 
     def clear(self):
